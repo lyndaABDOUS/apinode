@@ -8,7 +8,7 @@ import PasswordException from '../exception/PasswordException';
 
 export class AuthController {
 
-    static login = async(req: Request, res: Response) => {
+    static login = async(req: Request, res: Response) => { 
 
         let data: any = req.body;
 
@@ -21,7 +21,7 @@ export class AuthController {
             const isOk = await PasswordException.comparePassword(data.password, user.password);
 
             if (!isOk)
-                throw new Error(`wrong password!`)
+                throw new Error('Password erroné')
 
             const theToken: any = await sign({ id: user.id_user, name: user.fullname }, < string > process.env.JWT_KEY, { expiresIn: '5m' })
 
